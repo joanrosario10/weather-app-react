@@ -1,31 +1,21 @@
-.search-bar {
+.searchBar {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 20px;
+    margin-top: 20px;
 }
 
-.search-input {
-    padding: 10px 15px;
-    border: none;
-    border-radius: 25px;
+.searchBar input {
+    padding: 10px;
     font-size: 16px;
     margin-right: 10px;
-    flex: 1;
-    outline: none;
 }
 
-.search-button {
+.searchBar button {
     padding: 10px 20px;
-    border: none;
-    border-radius: 25px;
-    background-color: #007BFF;
-    color: #fff;
     font-size: 16px;
     cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.search-button:hover {
-    background-color: #0056b3;
+    border: none;
+    background-color: #6367c2;
+    color: white;
 }

@@ -1,0 +1,9 @@
+.cityItem {
+    padding: 10px;
+    font-size: 18px;
+    border-bottom: 1px solid #ddd;
+}
+
+.cityItem:last-child {
+    border-bottom: none;
+}

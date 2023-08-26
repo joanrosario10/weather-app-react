@@ -1,18 +1,21 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import "./SearchBar.css";
 
 function SearchBar(props) {
   const [city, setCity] = useState("");
 
-  const handleCitynames = () => {
+  const searchHandler = () => {
     props.onSearch(city);
-    setCity("");
   };
 
   return (
-    <div>
-      <input value={city} onChange={(e) => setCity(e.target.value)} />
-      <button onClick={handleCitynames}>Search</button>
+    <div className="searchBar">
+      <input
+        value={city}
+        onChange={(e) => setCity(e.target.value)}
+        placeholder="Enter city name..."
+      />
+      <button onClick={searchHandler}>Search</button>
     </div>
   );
 }
