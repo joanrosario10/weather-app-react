@@ -17,6 +17,7 @@ function App() {
       if (data && data.name) {
         setWeatherData(data);
         setCityHistory((prevHistory) => [...prevHistory, data]);
+        setError(null);
       } else {
         setError("City not found");
       }
