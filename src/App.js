@@ -1,23 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
-
+import React, { useState } from "react";
+import Header from "../src/component/Header";
+import SearchBar from "../src/component/SearchBar";
+import WeatherDisplay from "../src/component/WeatherDisplay";
+import CityItemHistory from "../src/component/CityItemHistory";
+import ErrorNotification from "../src/component/ErrorNotification";
+import { fetchWeatherData } from "../src/component/service/weatherService";
+import "./app.css";
 function App() {
+  const [weatherData, setWeatherData] = useState(null);
+  const [cityHistory, setCityHistory] = useState([]);
+  const [error, setError] = useState(null);
+
+  const handleSearch = async (cityName) => {
+    try {
+      const data = await fetchWeatherData(cityName);
+      if (data && data.name) {
+        setWeatherData(data);
+        setCityHistory((prevHistory) => [...prevHistory, data]);
+      } else {
+        setError("City not found");
+      }
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <SearchBar onSearch={handleSearch} />
+      {error && <ErrorNotification message={error} />}
+      <WeatherDisplay weatherData={weatherData} />
+      <CityItemHistory history={cityHistory} />
     </div>
   );
 }
